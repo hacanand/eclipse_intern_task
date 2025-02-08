@@ -1,18 +1,23 @@
+"use client"; // ✅ Ensure it's a client component
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Settings, RefreshCw, MapPin } from "lucide-react";
 
 const navigation = [
-  { name: "Find Job", href: "/", current: true },
-  { name: "Applied Jobs", href: "/applied-jobs", current: false },
-  { name: "Messages", href: "/messages", current: false },
-  { name: "Hiring", href: "/hiring", current: false },
-  { name: "Community", href: "/community", current: false },
-  { name: "FAQ", href: "/faq", current: false },
+  { name: "Find Job", href: "/" },
+  { name: "Applied Jobs", href: "/applied-jobs" },
+  { name: "Messages", href: "/messages" },
+  { name: "Hiring", href: "/hiring" },
+  { name: "Community", href: "/community" },
+  { name: "FAQ", href: "/faq" },
 ];
 
 export function Header() {
+  const pathname = usePathname(); // ✅ Get the current route
+
   return (
-    <header className="border-b  border-[#2D3748] bg-[#171923]">
+    <header className="border-b border-[#2D3748] bg-[#171923]">
       <div className="mx-auto flex h-16 items-center justify-between px-6">
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center">
@@ -29,7 +34,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={`text-sm ${
-                      item.current
+                      pathname === item.href
                         ? "border-b-2 border-white pb-4 font-medium text-white"
                         : "text-[#a0aec0] hover:text-white"
                     }`}
