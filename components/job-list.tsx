@@ -1,15 +1,35 @@
+"use client"; // ✅ Ensure it's a client component
+
+import { useEffect, useState } from "react";
 import { JobCard } from "@/components/job-card";
 
-async function getJobs() {
-  const res = await fetch("http://localhost:3000/api/jobs");
-  if (!res.ok) {
-    throw new Error("Failed to fetch jobs");
-  }
-  return res.json();
-}
+export function JobList() {
+  const [jobs, setJobs] = useState([]);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
-export async function JobList() {
-  const jobs = await getJobs();
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        const res = await fetch("/api/jobs"); // ✅ Adjust URL to match API
+        if (!res.ok) throw new Error("Failed to fetch jobs");
+        const data = await res.json();
+        setJobs(data);
+      } catch (err) {
+        console.error("Error fetching jobs:", err);
+        setError("Failed to load jobs.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchJobs();
+  }, []);
+
+  if (loading) return <div className="text-white">Loading jobs...</div>;
+  if (error) return <div className="text-red-500">{error}</div>;
+  if (jobs.length === 0)
+    return <div className="text-gray-500">No jobs available.</div>;
 
   return (
     <div>
@@ -27,7 +47,7 @@ export async function JobList() {
         </select>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {jobs.map((job:any) => (
+        {jobs.map((job: any) => (
           <JobCard key={job.id} {...job} />
         ))}
       </div>
