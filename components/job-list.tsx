@@ -1,66 +1,24 @@
-import { JobCard } from "@/components/job-card"
+import { JobCard } from "@/components/job-card";
 
-const jobs = [
-  {
-    id: "1",
-    company: {
-      name: "Google",
-      logo: "https://www.google.com/favicon.ico",
-      bgColor: "bg-[#FFF8E7]",
-    },
-    title: "Senior Product Manager",
-    rating: 4,
-    reviews: 42,
-    location: "California, CA",
-    tags: ["Full Time", "Senior Level", "Remote"],
-    salary: {
-      amount: 2.5,
-      period: "Monthly",
-    },
-  },
-  {
-    id: "2",
-    company: {
-      name: "Twitter",
-      logo: "https://abs.twimg.com/favicons/twitter.ico",
-      bgColor: "bg-[#EBF8FF]",
-    },
-    title: "Front End Developer",
-    rating: 3,
-    reviews: 27,
-    location: "New York, NY",
-    tags: ["Part Time", "Mid Level", "On Site"],
-    salary: {
-      amount: 1.5,
-      period: "Monthly",
-    },
-  },
-  {
-    id: "3",
-    company: {
-      name: "Spotify",
-      logo: "https://www.spotify.com/favicon.ico",
-      bgColor: "bg-[#F0FFF4]",
-    },
-    title: "Quality Assurance Engineer",
-    rating: 4,
-    reviews: 42,
-    location: "Rome, IT",
-    tags: ["Full Time", "On Site"],
-    salary: {
-      amount: 1.5,
-      period: "Monthly",
-    },
-  },
-]
+async function getJobs() {
+  const res = await fetch("http://localhost:3000/api/jobs");
+  if (!res.ok) {
+    throw new Error("Failed to fetch jobs");
+  }
+  return res.json();
+}
 
-export function JobList() {
+export async function JobList() {
+  const jobs = await getJobs();
+
   return (
     <div>
       <div className="mb-6 flex items-center justify-between">
         <h2 className="text-2xl font-bold text-white">
           Recommended Jobs
-          <span className="ml-2 text-sm font-normal text-gray-400">386</span>
+          <span className="ml-2 text-sm font-normal text-gray-400">
+            {jobs.length}
+          </span>
         </h2>
         <select className="rounded bg-[#1A202C] px-3 py-1 text-sm text-gray-400">
           <option>Last updated</option>
@@ -69,11 +27,10 @@ export function JobList() {
         </select>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {jobs.map((job) => (
+        {jobs.map((job:any) => (
           <JobCard key={job.id} {...job} />
         ))}
       </div>
     </div>
-  )
+  );
 }
-

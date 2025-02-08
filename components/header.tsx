@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { Settings, RefreshCw, MapPin } from "lucide-react"
+import Link from "next/link";
+import { Settings, RefreshCw, MapPin } from "lucide-react";
 
 const navigation = [
   { name: "Find Job", href: "/", current: true },
@@ -8,16 +8,15 @@ const navigation = [
   { name: "Hiring", href: "/hiring", current: false },
   { name: "Community", href: "/community", current: false },
   { name: "FAQ", href: "/faq", current: false },
-]
+];
 
 export function Header() {
   return (
-    <header className="border-b border-[#2D3748] bg-[#171923]">
+    <header className="border-b  border-[#2D3748] bg-[#171923]">
       <div className="mx-auto flex h-16 items-center justify-between px-6">
         <div className="flex items-center gap-12">
           <Link href="/" className="flex items-center">
             <div className="flex items-center">
-               
               <span className="text-2xl font-bold text-white">
                 <span className="font-light">ec</span>lipse
               </span>
@@ -57,6 +56,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
-

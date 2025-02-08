@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server"
+import { NextResponse } from "next/server";
 
 const jobs = [
   {
@@ -52,9 +52,8 @@ const jobs = [
       period: "Monthly",
     },
   },
-]
+];
 
 export async function GET() {
-  return NextResponse.json(jobs)
+  return NextResponse.json(jobs);
 }
-
