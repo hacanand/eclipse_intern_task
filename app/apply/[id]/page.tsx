@@ -4,10 +4,11 @@ import { useRouter } from "next/navigation"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+ 
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { useJobs } from "@/contexts/JobContext"
+import Input from "@/components/ui/input"
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -79,7 +80,7 @@ export default function ApplyJob({ params }: { params: { id: string } }) {
                 name="resume"
                 type="file"
                 className="mt-1 bg-[#1A202C] text-white"
-                onChange={(event) => {
+                onChange={(event: { currentTarget: { files: any[] } }) => {
                   setFieldValue("resume", event.currentTarget.files?.[0])
                 }}
               />
