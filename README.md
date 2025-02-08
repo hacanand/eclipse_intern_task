@@ -36,13 +36,13 @@ Eclipse is a modern job board application built with Next.js, React, and Tailwin
 
 2. Install dependencies:
    ```
-   cd eclipse-job-dashboard
-   pnpm install
+   cd eclipse_job_dashboard
+   npm install
    ```
 
 3. Run the development server:
    ```
-   pnpm dev
+   npm run dev
    ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
