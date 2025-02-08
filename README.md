@@ -31,7 +31,7 @@ Eclipse is a modern job board application built with Next.js, React, and Tailwin
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/eclipse-job-dashboard.git
+   git clone https://github.com/hacanand/eclipse-intern-task.git
    ```
 
 2. Install dependencies:
