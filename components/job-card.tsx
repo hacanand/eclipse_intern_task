@@ -71,7 +71,7 @@ export function JobCard({ id, company, title, rating, reviews, location, tags, s
           <span className="text-sm text-gray-600">/{salary.period}</span>
         </div>
         <Link href={`/jobs/${id}`}>
-          <Button className="bg-[#38A169] text-white hover:bg-[#2F855A]">View Details</Button>
+          <Button className="bg-[#38A169] rounded text-white hover:bg-[#2F855A]">View Details</Button>
         </Link>
       </div>
     </div>
